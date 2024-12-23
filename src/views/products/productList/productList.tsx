@@ -16,7 +16,10 @@ export const ProductList: React.FC<ProductListProps> = ({
         <div className="flex">
           <div>{product.id}</div>. {product.name}
         </div>
-        <button onClick={() => onOpenModal(product)}>Details</button>
+        <button onClick={() => {
+          onOpenModal(product);
+          localStorage.setItem('product', JSON.stringify(product))
+          }}>Details</button>
       </div>
     ))}
   </div>
