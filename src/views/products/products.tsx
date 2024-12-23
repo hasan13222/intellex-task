@@ -10,7 +10,10 @@ import { usePagination } from "@/hooks/usePagination";
 import { PRODUCTS_DATA } from "@/data/productsData";
 
 export const Products: React.FC = () => {
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const modalProduct = localStorage.getItem('product');
+  const initialProductState = modalProduct ? JSON.parse(modalProduct) : null;
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(initialProductState);
+
   const {
     currentPage,
     totalPages,
@@ -24,6 +27,7 @@ export const Products: React.FC = () => {
 
   const handleCloseModal = useCallback(() => {
     setSelectedProduct(null);
+    localStorage.removeItem('product');
   }, []);
 
   return (
